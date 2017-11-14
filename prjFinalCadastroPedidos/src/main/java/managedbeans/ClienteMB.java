@@ -7,23 +7,22 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.RowEditEvent;
 
-
 import modelos.Cliente;
-//import servicos.ClienteServico;
+import servicos.ClienteServico;
 
 @ManagedBean(name = "ClienteMB")
 @ViewScoped
 public class ClienteMB {
 
 	private Cliente cliente = new Cliente();
-	//private ClienteServico prodService = new ClienteServico();
+	private ClienteServico cliService = new ClienteServico();
 	private List<Cliente> clientes;
 
 	public void salvar() {
 
 		clientes.add(cliente);
 
-		ProdutoServico.salvar(cliente);
+		cliService.salvar(cliente);
 
 		cliente = new Cliente();
 
@@ -31,7 +30,7 @@ public class ClienteMB {
 
 	public void remove(Cliente cliente) {
 		clientes.remove(cliente);
-		prodService.remover(cliente);
+		cliService.remover(cliente);
 
 	}
 
@@ -45,15 +44,15 @@ public class ClienteMB {
 
 	public List<Cliente> getClientes() {
 		if (clientes == null)
-			clientes = prodService.getClientes();
+			clientes = cliService.getClientes();
 
 		return clientes;
 	}
 
 	public void onRowEdit(RowEditEvent event) {
 
-		Cliente p = ((Cliente) event.getObject());
-		prodService.alterar(p);
+		Cliente c = ((Cliente) event.getObject());
+		cliService.alterar(c);
 	}
 
 }

@@ -19,10 +19,10 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String endereco;
 	
-	public int getMatricula() {
+	public int getCodigo() {
 		return codigo;
 	}
-	public void setMatricula(int codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
