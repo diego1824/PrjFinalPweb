@@ -1,12 +1,14 @@
 package modelos;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente implements Serializable{
@@ -15,9 +17,10 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int codigo;
-	
 	private String nome;
 	private String endereco;
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 	
 	public int getCodigo() {
 		return codigo;
@@ -38,8 +41,18 @@ public class Cliente implements Serializable{
 		this.endereco = endereco;
 	}
 	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	
-	
+	public void addPedido(Pedido pedido)
+	{
+		pedidos.add(pedido);
+		
+	}
 	
 	@Override
 	public int hashCode() {

@@ -23,7 +23,6 @@ public class Pedido implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long codigo;
 		
-	@OneToMany(mappedBy="pedido")
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	@ManyToOne
@@ -54,6 +53,10 @@ public class Pedido implements Serializable{
 
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
+	}
+	
+	public void addProdutos (Produto produto){
+		produtos.add(produto);
 	}
 
 	

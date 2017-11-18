@@ -24,7 +24,7 @@ public class Vendedor implements Serializable{
 	private String nome;
 	
 	@OneToMany(mappedBy="vendedor")
-	private List<Produto> produtos = new ArrayList<Produto>();
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 	
 	
 	public Vendedor(long codigo, String nome) {
@@ -48,16 +48,16 @@ public class Vendedor implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<Produto> getProdutos() {
-		return produtos;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
-	public void addProduto(Produto produto)
+	public void addPedido(Pedido pedido)
 	{
-		produtos.add(produto);
+		pedidos.add(pedido);
 		
 	}
 	
