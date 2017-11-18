@@ -10,23 +10,23 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="#{msg['pages.cadastroAluno.title']}" />
+		<h:outputText value="#{msg['pages.cadastroCliente.title']}" />
 	</ui:define>
 	
 
 	<ui:define name="principal">
 	  
-	  <h1><p:outputLabel value="#{msg['pages.cadastroAluno.menu']}"/></h1>
+	  <h1><p:outputLabel value="#{msg['pages.cadastroCliente.menu']}"/></h1>
 	  
 	  <h:form id="formCliente">	
 	  <p:panelGrid columns="2">
-      <p:outputLabel value="#{msg['pages.cadastroAluno.nome']}" />
-      <p:inputText value="#{alunoManagedBean.aluno.nome}"/>
-      <p:outputLabel value="#{msg['pages.cadastroAluno.curso']}" />
-      <p:inputText value="#{alunoManagedBean.aluno.curso}"/>
+      <p:outputLabel value="#{msg['pages.cadastroCliente.nome']}" />
+      <p:inputText value="#{ClienteMB.cliente.nome}"/>
+      <p:outputLabel value="#{msg['pages.cadastroCliente.endereco']}" />
+      <p:inputText value="#{ClienteMB.cliente.endereco}"/>
 	  </p:panelGrid>
 	  <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
-	                 action="#{alunoManagedBean.salvar}"
+	                 action="#{ClienteMB.salvar}"
 	                 update=":formCliente, :formTableCliente:tabelaCliente"
 	                 />
        </h:form>
@@ -34,11 +34,11 @@
    <br/>
    
    
-   <h3><p:outputLabel value="#{msg['pages.cadastroAluno.tableTitle']}" /> </h3>
+   <h3><p:outputLabel value="#{msg['pages.cadastroCliente.tableTitle']}" /> </h3>
    <h:form id="formTableCliente">
    
     <p:dataTable
-                value="#{alunoManagedBean.alunos}"
+                value="#{ClienteMB.clientes}"
                 var="aux"
                 id="tabelaCliente"
             
@@ -49,51 +49,51 @@
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 rowsPerPageTemplate="5,10,15"
                 
-                emptyMessage="#{msg['pages.cadastroAluno.filterMSG']}"
+                emptyMessage="#{msg['pages.cadastroCliente.filterMSG']}"
                 
    >
       
-      <p:ajax event="rowEdit" listener="#{alunoManagedBean.onRowEdit}" update="tabelaCliente" />
+      <p:ajax event="rowEdit" listener="#{ClienteMB.onRowEdit}" update="tabelaCliente" />
       
-      <p:column headerText="#{msg['pages.cadastroAluno.matricula']}" filterBy="#{aux.matricula}">
-        <p:outputLabel value="#{aux.matricula}" />
+      <p:column headerText="#{msg['pages.cadastroCliente.codigo']}" filterBy="#{aux.codigo}">
+        <p:outputLabel value="#{aux.codigo}" />
       </p:column>
       
       
       
-      <p:column headerText="#{msg['pages.cadastroAluno.nome']}" filterBy="#{aux.nome}">
+      <p:column headerText="#{msg['pages.cadastroCliente.nome']}" filterBy="#{aux.nome}">
     
     			<p:cellEditor>
 					<f:facet name="output">
 						<p:outputLabel value="#{aux.nome}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="alunoNome" value="#{aux.nome}"
+						<p:inputText id="clienteNome" value="#{aux.nome}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
 	  </p:column>
     
-      <p:column headerText="#{msg['pages.cadastroAluno.curso']}" filterBy="#{aux.curso}">
+      <p:column headerText="#{msg['pages.cadastroCliente.endereco']}" filterBy="#{aux.endereco}">
      
      			<p:cellEditor>
 					<f:facet name="output">
-						<p:outputLabel value="#{aux.curso}" />
+						<p:outputLabel value="#{aux.endereco}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="alunoCurso" value="#{aux.curso}"
+						<p:inputText id="clienteEndereco" value="#{aux.endereco}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
       </p:column>
       
-      <p:column style="width:70px" headerText="#{msg['pages.cadastroAluno.optionTable']}">
+      <p:column style="width:70px" headerText="#{msg['pages.cadastroCliente.optionTable']}">
 					
 					<p:rowEditor />
 					
 					<p:commandLink id="remover" styleClass="ui-icon ui-icon-trash"
 						style="text-align:center"
-						actionListener="#{alunoManagedBean.remover(aux)}"
+						actionListener="#{ClienteMB.remove(aux)}"
 						update="tabelaCliente" />
 	  </p:column>
 
